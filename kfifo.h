@@ -39,13 +39,13 @@
 
 #define KFIFO_EMPTY(kfifo) ((kfifo)->tail == (kfifo)->head)
 
-#define KFIFO_PUSH(kfifo, data)                              \
+#define KFIFO_ENQUEUE(kfifo, data)                           \
     do {                                                     \
         (kfifo)->array[(kfifo)->tail] = (data);              \
         (kfifo)->tail = ((kfifo)->tail + 1) & (kfifo)->mask; \
     } while(0)
 
-#define KFIFO_POP(kfifo)                                                            \
+#define KFIFO_DEQUEUE(kfifo)                                                        \
     ({                                                                              \
         typeof((kfifo)->array[(kfifo)->head]) data = (kfifo)->array[(kfifo)->head]; \
         (kfifo)->head = ((kfifo)->head + 1) & (kfifo)->mask;                        \
