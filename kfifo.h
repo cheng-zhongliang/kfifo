@@ -52,4 +52,10 @@
         data;                                                                       \
     })
 
+#define KFIFO_PEEK(kfifo) ((kfifo)->array[(kfifo)->head])
+
+#define KFIFO_CAPACITY(kfifo) ((kfifo)->cap - 1)
+
+#define KFIFO_LENGTH(kfifo) (((kfifo)->tail - (kfifo)->head) & (kfifo)->mask)
+
 #endif
