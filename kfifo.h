@@ -1,3 +1,7 @@
+// Copyright (c) 2024 cheng-zhongliang. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
 #ifndef _KFIFO_H_
 #define _KFIFO_H_
 
