@@ -3,6 +3,7 @@
     src="logo.png" 
     width="350" height="175" border="0" alt="event">
 <br><br>
+<a title="License" target="_blank" href="https://github.com/cheng-zhongliang/kfifo/blob/master/LICENSE"><img src="https://img.shields.io/github/license/cheng-zhongliang/kfifo?style=flat-square"></a>
 </p>
 
 `kfifo` is a ring queue inspired by linux kernel. It is simple and efficient that can be used in embedded systems.
