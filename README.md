@@ -18,9 +18,7 @@
 ## Usage
 
 **[kfifo.h](kfifo.h?raw=1)** should be dropped into an existing project and compiled along with it. The library provides some 
-macros for using.
-
-Talking is cheap, show you a sample following:
+macros for using. Talking is cheap, show you a sample following:
 
 ```c
 #include "kfifo.h"
