@@ -12,7 +12,7 @@
 
 - Ultra Fast
 - Lock Free
-- Thread Safe(Single Producer With Single Consumer)
+- Thread Safe (Single Producer With Single Consumer)
 - Supports C99 And UP
 
 ## Usage
