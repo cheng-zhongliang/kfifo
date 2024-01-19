@@ -21,8 +21,8 @@
 macros for using. Talking is cheap, show you a sample following:
 
 ```c
-#include "kfifo.h"
 #include <assert.h>
+#include "kfifo.h"
 
 int main(void) {
     _KFIFO(kfifo, int) kfifo;
