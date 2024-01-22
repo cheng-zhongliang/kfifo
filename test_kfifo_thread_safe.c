@@ -1,6 +1,5 @@
 #include <assert.h>
 #include <pthread.h>
-#include <stdio.h>
 #include "kfifo.h"
 
 void* producer_thread(void* arg) {
