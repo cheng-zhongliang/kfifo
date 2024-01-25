@@ -1,7 +1,7 @@
 <p align="center">
 <img 
     src="logo.png" 
-    width="350" height="175" border="0" alt="event">
+    width="350" height="175" border="0" alt="kfifo">
 <br><br>
 <a title="License" target="_blank" href="https://github.com/cheng-zhongliang/kfifo/blob/master/LICENSE"><img src="https://img.shields.io/github/license/cheng-zhongliang/kfifo?style=flat-square"></a>
 </p>
