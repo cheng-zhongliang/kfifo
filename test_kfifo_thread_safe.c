@@ -2,26 +2,44 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
+#define _GNU_SOURCE
 #include <assert.h>
 #include <pthread.h>
+#include <sched.h>
 #include "kfifo.h"
 
+void set_cpu_affinity(int cpu_no) {
+    pthread_t t = pthread_self();
+    cpu_set_t cpu;
+    CPU_ZERO(&cpu);
+    CPU_SET(cpu_no, &cpu);
+    assert(pthread_setaffinity_np(t, sizeof(cpu_set_t), &cpu) == 0);
+}
+
 void* producer_thread(void* arg) {
+    set_cpu_affinity(0);
     _KFIFO(kfifo, int)* kfifo = arg;
     int n = 0;
     do {
+        if(KFIFO_FULL(kfifo)) {
+            continue;
+        }
         KFIFO_ENQUEUE(kfifo, n);
         n++;
-    } while(!KFIFO_FULL(kfifo) && n != 1000);
+    } while(n != 1000);
 }
 
 void* consumer_thread(void* arg) {
+    set_cpu_affinity(1);
     _KFIFO(kfifo, int)* kfifo = arg;
     int n = 0;
     do {
+        if(KFIFO_EMPTY(kfifo)) {
+            continue;
+        }
         assert(n == KFIFO_DEQUEUE(kfifo));
         n++;
-    } while(!KFIFO_EMPTY(kfifo) && n != 1000);
+    } while(n != 1000);
 }
 
 int main(void) {
