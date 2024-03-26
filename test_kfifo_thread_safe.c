@@ -3,9 +3,11 @@
 // license that can be found in the LICENSE file.
 
 #define _GNU_SOURCE
+
 #include <assert.h>
 #include <pthread.h>
 #include <sched.h>
+
 #include "kfifo.h"
 
 void set_cpu_affinity(int cpu_no) {
