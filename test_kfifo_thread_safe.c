@@ -26,9 +26,13 @@ void* producer_thread(void* arg) {
         if(KFIFO_FULL(kfifo)) {
             continue;
         }
-        KFIFO_ENQUEUE(kfifo, n);
+        int* nn = calloc(1, sizeof(int));
+        *nn = n;
+        KFIFO_ENQUEUE(kfifo, nn);
+        free(nn);
         n++;
     } while(n != 1000);
+    return NULL;
 }
 
 void* consumer_thread(void* arg) {
@@ -39,13 +43,15 @@ void* consumer_thread(void* arg) {
         if(KFIFO_EMPTY(kfifo)) {
             continue;
         }
-        assert(n == KFIFO_DEQUEUE(kfifo));
+        int* nn = KFIFO_DEQUEUE(kfifo);
+        assert(*nn == n);
         n++;
     } while(n != 1000);
+    return NULL;
 }
 
 int main(void) {
-    _KFIFO(kfifo, int) kfifo;
+    _KFIFO(kfifo, int*) kfifo;
     KFIFO_INIT(&kfifo, 16);
     pthread_t producer, consumer;
     pthread_create(&producer, NULL, producer_thread, &kfifo);
