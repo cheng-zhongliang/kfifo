@@ -51,7 +51,7 @@ void* consumer_thread(void* arg) {
 }
 
 int main(void) {
-    _KFIFO(kfifo, int*) kfifo;
+    _KFIFO(kfifo, int) kfifo;
     KFIFO_INIT(&kfifo, 16);
     pthread_t producer, consumer;
     pthread_create(&producer, NULL, producer_thread, &kfifo);
