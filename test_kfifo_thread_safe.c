@@ -29,7 +29,6 @@ void* producer_thread(void* arg) {
         int* nn = calloc(1, sizeof(int));
         *nn = n;
         KFIFO_ENQUEUE(kfifo, nn);
-        free(nn);
         n++;
     } while(n != 1000);
     return NULL;
@@ -45,6 +44,7 @@ void* consumer_thread(void* arg) {
         }
         int* nn = KFIFO_DEQUEUE(kfifo);
         assert(*nn == n);
+        free(nn);
         n++;
     } while(n != 1000);
     return NULL;
