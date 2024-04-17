@@ -30,7 +30,7 @@ void* producer_thread(void* arg) {
         *nn = n;
         KFIFO_ENQUEUE(kfifo, nn);
         n++;
-    } while(n != 1000);
+    } while(n != 10000);
     return NULL;
 }
 
@@ -42,11 +42,12 @@ void* consumer_thread(void* arg) {
         if(KFIFO_EMPTY(kfifo)) {
             continue;
         }
-        int* nn = KFIFO_DEQUEUE(kfifo);
+        int* nn;
+        KFIFO_DEQUEUE(kfifo, nn);
         assert(*nn == n);
         free(nn);
         n++;
-    } while(n != 1000);
+    } while(n != 10000);
     return NULL;
 }
 

@@ -49,12 +49,11 @@
         (kfifo)->tail = ((kfifo)->tail + 1) & (kfifo)->mask; \
     } while(0)
 
-#define KFIFO_DEQUEUE(kfifo)                                                        \
-    ({                                                                              \
-        typeof((kfifo)->array[(kfifo)->head]) data = (kfifo)->array[(kfifo)->head]; \
-        (kfifo)->head = ((kfifo)->head + 1) & (kfifo)->mask;                        \
-        data;                                                                       \
-    })
+#define KFIFO_DEQUEUE(kfifo, data)                           \
+    do {                                                     \
+        (data) = (kfifo)->array[(kfifo)->head];              \
+        (kfifo)->head = ((kfifo)->head + 1) & (kfifo)->mask; \
+    } while(0)
 
 #define KFIFO_PEEK(kfifo) ((kfifo)->array[(kfifo)->head])
 
