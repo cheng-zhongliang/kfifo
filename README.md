@@ -22,6 +22,7 @@ macros for using. Talking is cheap, show you a sample following:
 
 ```c
 #include <assert.h>
+#include <stdio.h>
 
 #include "kfifo.h"
 
@@ -30,11 +31,16 @@ int main(void) {
     KFIFO_INIT(&kfifo, 1000);
     assert(KFIFO_CAPACITY(&kfifo) == 1023);
     do {
-        KFIFO_ENQUEUE(&kfifo, 1);
+        int* n = calloc(1, sizeof(int));
+        *n = 1;
+        KFIFO_ENQUEUE(&kfifo, n);
     } while(!KFIFO_FULL(&kfifo));
     assert(KFIFO_LENGTH(&kfifo) == 1023);
     do {
-        KFIFO_DEQUEUE(&kfifo);
+        int* nn;
+        KFIFO_DEQUEUE(&kfifo, nn);
+        assert(*nn == 1);
+        free(nn);
     } while(!KFIFO_EMPTY(&kfifo));
     assert(KFIFO_LENGTH(&kfifo) == 0);
     KFIFO_FREE(&kfifo);
