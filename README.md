@@ -22,7 +22,7 @@ macros for using. Talking is cheap, show you a sample following:
 
 ```c
 #include <assert.h>
-#include <stdio.h>
+#include <stdlib.h>
 
 #include "kfifo.h"
 
